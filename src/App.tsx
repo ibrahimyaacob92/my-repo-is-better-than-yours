@@ -1,19 +1,32 @@
 import React from "react";
-import { StackInput, StackList } from "./components";
+import { StackInput, StackList, Shortcut, Navbar } from "./components";
 import { RepoProvider } from "./context/RepoContext";
-import logo from "./logo.svg";
-// import './App.css';
+import styled from "styled-components";
 
 function App() {
   return (
     <RepoProvider>
-      <div className="App">
-        <StackInput />
+      <AppContainer>
+        <Navbar>
+          <>
+            <StackInput />
+            <Shortcut />
+          </>
+        </Navbar>
         <StackList />
-        {/* <History/> */}
-      </div>
+      </AppContainer>
     </RepoProvider>
   );
 }
 
 export default App;
+
+const AppContainer = styled.div`
+  display: grid;
+  grid-template-columns: 280px auto;
+  height: calc(100vh - 20px);
+  column-gap: 10px;
+  padding: 10px;
+  justify-content: center;
+  overflow-y: scroll;
+`;

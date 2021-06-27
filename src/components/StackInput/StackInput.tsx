@@ -13,6 +13,7 @@ const StackInput = (props: Props) => {
   const [packageMgrErr, setPackageMgrErr] = useState(false);
   const [fetch, setFetch] = useState(false);
 
+  // TODO : concatenate the
   const buttonEnable: boolean =
     packageMgrErr && repoErr && !!(packageMgr && repo);
   const [repoOwner, repoName] = repo.split(DELIM);
