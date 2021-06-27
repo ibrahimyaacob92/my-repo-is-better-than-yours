@@ -43,7 +43,7 @@ const useFetchRepo = (
         owner: data.owner.login,
         avatar: data.owner.avatar_url,
         url: data.html_url,
-        fork: data.forks,
+        forks: data.forks,
         language: data.language,
         stars: data.stargazers_count,
         openIssues: data.open_issues_count,
@@ -51,6 +51,7 @@ const useFetchRepo = (
         createdAt: data.created_at,
         lastUpdate: data.updated_at,
         repoSize: data.size,
+        minimize: false,
       };
       _repoData = { ...toAppend };
     } catch (error) {

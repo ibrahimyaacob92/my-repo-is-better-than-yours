@@ -35,7 +35,16 @@ const reducer = (state: RepoData[], action: { type: string; data: any }) => {
       }
       return [...state];
     }
-
+    case "REMOVE": {
+      const tempList = JSON.parse(JSON.stringify(state));
+      tempList.splice(data, 1);
+      return [...tempList];
+    }
+    case "SET_AS_MAIN": {
+      const tempList = JSON.parse(JSON.stringify(state));
+      const tempItem = tempList.splice(data, 1);
+      return [...tempItem, ...tempList];
+    }
     case "CLEAR":
       return [];
     default:

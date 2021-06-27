@@ -16,6 +16,7 @@ export type RepoData = {
   repoSize: number;
   totalIssues: number;
   openIssues: number;
+  minimize: boolean;
   contributors?: number;
   avatar?: string;
   lastMonthDonwloads?: number;

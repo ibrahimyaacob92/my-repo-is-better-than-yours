@@ -19,4 +19,5 @@ export const sample: RepoData = {
   lastMonthDonwloads: 34,
   latestVersion: 34,
   releaseHistories: ["asda", "Sdas"],
+  minimize: false,
 };
