@@ -20,7 +20,7 @@ interface Props {
     | "percent";
   additionalText?: string;
   uom?: string;
-  iconColor?: string | boolean;
+  iconColor?: string;
 }
 
 const StatsIcon = ({ number, icon, additionalText, uom, iconColor }: Props) => {

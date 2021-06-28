@@ -17,23 +17,23 @@ const Shortcut = (props: Props) => {
       <Accordion title={"Saved Search"} defaultOpen={true}>
         <>
           {storedValue.map((repo: any) => (
-            <ShortcutItem repo={repo} />
+            <ShortcutItem key={repo.repoName + repo.repoOwner} repo={repo} />
           ))}
         </>
       </Accordion>
       <Accordion title="Popular Repos" defaultOpen={true}>
         <>
           {popularRepos.map((repo: any) => (
-            <ShortcutItem repo={repo} />
+            <ShortcutItem key={repo.repoName + repo.repoOwner} repo={repo} />
           ))}
         </>
       </Accordion>
       <Accordion title="About" defaultOpen={false}>
         <>
           <p>
-            This is an opensource project to compare github's repositories &
-            packages. Many improvements can be made & the scoring method may
-            need a second opinion.
+            Opensource project to compare github's repositories & packages. Many
+            improvements can be made & the scoring method may need a second
+            opinion.
           </p>
           <p>Created by Ibrahim Yaacob.</p>
         </>

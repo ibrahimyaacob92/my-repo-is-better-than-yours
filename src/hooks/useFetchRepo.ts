@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useRepoContext } from "../context/RepoContext";
 import { RepoData } from "../types";
 import { sample } from "../sample/repoData";
+import { dateDiff, scoring } from "../utils";
 
 // const dummyUrl = "https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list";
 type NPMDownloadPeriod = "last-month" | "last-week" | "last-day";
@@ -31,7 +32,7 @@ const useFetchRepo = (
   const { dispatchRepo, repoData: repoList } = useRepoContext();
 
   const fetchGitRepo = async () => {
-    let _repoData = null;
+    let _repoData: { [key: string]: any } | null = null;
     let _errors = {} as FetchError;
     try {
       // First request to get the main
@@ -60,6 +61,7 @@ const useFetchRepo = (
 
     // Second Request to get issues
     try {
+      console.log("#2 Attempting to fetch Total Issues");
       const { data } = await axios.get(gitIssuesURL(repoOwner, repoName));
       _repoData = { ..._repoData, totalIssues: data?.total_count };
     } catch (error) {
@@ -72,13 +74,20 @@ const useFetchRepo = (
       switch (packageMgr) {
         case "npm":
           console.log("#3 Requesting to NPM..");
-          const { data } = await axios.get(
+          const { data: npmData } = await axios.get(
             npmDownloads(packageName, "last-month")
           );
-          _repoData = { ..._repoData, lastMonthDonwloads: data.downloads };
+          _repoData = { ..._repoData, lastMonthDownloads: npmData.downloads };
           break;
 
         case "pypi":
+          console.log("# Requesting to Pypi Stats");
+          const { data: pypiData } = await axios.get(
+            pipyDownloads(packageName),
+            { headers: { "Access-Control-Allow-Origin": "*" } }
+          );
+          _repoData = { ..._repoData, lastMonthDownloads: pypiData.last_month };
+          break;
         default:
           _errors.third = "Unknown Package Manager";
           break;
@@ -89,6 +98,43 @@ const useFetchRepo = (
     }
 
     // TODO: Fourth Get the version releases
+
+    // Fourth Calculate the scoring & additional calculation
+    try {
+      console.log("#4 Attempting to calculate the final scoring");
+      if (_repoData) {
+        const {
+          forks,
+          createdAt,
+          stars,
+          watch,
+          openIssues,
+          totalIssues,
+          lastMonthDownloads: totalDownloads,
+          repoSize: size,
+        } = _repoData;
+
+        const {
+          yearDiff,
+          monthDiff,
+          dayDiff,
+          totalDays: age,
+        } = dateDiff(createdAt);
+        const solvedIssues = totalIssues - openIssues;
+        _repoData.score = scoring({
+          age,
+          forks,
+          stars,
+          watch,
+          solvedIssues,
+          openIssues,
+          size,
+          totalDownloads,
+        });
+      }
+    } catch (error) {
+      console.log("Error Calculating");
+    }
 
     // set the values after collected
     setRepoData(_repoData as RepoData);
@@ -127,6 +173,10 @@ const npmRegistryURL = (packageName: string): string => {
 
 const pipyURL = (packageName: string): string => {
   return `https://pypi.org/pypi/${packageName}/json`;
+};
+
+const pipyDownloads = (packageName: string): string => {
+  return `https://pypistats.org/api/packages/${packageName}/recent`;
 };
 
 const gitReleasesURL = (repoOwner: string, repoName: string): string => {

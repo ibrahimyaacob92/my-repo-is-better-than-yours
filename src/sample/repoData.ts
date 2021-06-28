@@ -16,7 +16,7 @@ export const sample: RepoData = {
   openIssues: 34,
   contributors: 34,
   avatar: "34",
-  lastMonthDonwloads: 34,
+  lastMonthDownloads: 34,
   latestVersion: 34,
   releaseHistories: ["asda", "Sdas"],
   minimize: false,

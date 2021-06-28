@@ -7,7 +7,7 @@ interface Props {}
 
 const StackList = (props: Props) => {
   const { repoData } = useRepoContext();
-  console.log(repoData);
+  // console.log(repoData);
   return (
     <CardList>
       {repoData.map((repo, index) => (

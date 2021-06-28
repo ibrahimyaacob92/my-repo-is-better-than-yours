@@ -16,8 +16,11 @@ export function yearMonthDiff(
   return { month, year };
 }
 
-export function dateDiff(startingDate: string, endingDate: string = "") {
-  console.log(startingDate);
+export function dateDiff(
+  startingDate: string,
+  endingDate: string = ""
+): { dayDiff: number; monthDiff: number; yearDiff: number; totalDays: number } {
+  // console.log(startingDate);
   var startDate = new Date(new Date(startingDate).toISOString().substr(0, 10));
   if (!endingDate) {
     endingDate = new Date().toISOString().substr(0, 10); // need date in YYYY-MM-DD format
@@ -51,11 +54,12 @@ export function dateDiff(startingDate: string, endingDate: string = "") {
     }
     dayDiff += daysInMonth[startDate.getMonth()];
   }
-
+  const totalDays = dayDiff + monthDiff * 30 + yearDiff * 365;
   return {
     yearDiff,
     monthDiff,
     dayDiff,
+    totalDays,
   };
 }
 
@@ -67,26 +71,32 @@ type ParamsA = {
   solvedIssues: number;
   openIssues: number;
   totalDownloads: number;
+  size: number;
   [key: string]: number;
 };
 
 export const scoring = (paramsMultiply: ParamsA): number => {
   const weightageCoeff: ParamsA = {
     age: 0.3,
-    forks: 2,
+    forks: 1.5,
     stars: 1,
     watch: 1.5,
     solvedIssues: 1.5,
     openIssues: -1.5,
-    totalDownloads: 0.5,
+    totalDownloads: 0.25,
+    size: -0.05,
   };
 
   const bonus = {};
   let score = 0;
-
   Object.entries(weightageCoeff).forEach(([key, value]) => {
-    score = score + paramsMultiply[key] * value;
+    // calculate for those parameter's defined
+    if (paramsMultiply[key]) score = score + paramsMultiply[key] * value;
   });
 
-  return score;
+  return Math.round(score);
 };
+
+export function numberWithCommas(x: number): string {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}

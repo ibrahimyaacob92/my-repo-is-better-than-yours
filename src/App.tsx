@@ -31,4 +31,7 @@ const AppContainer = styled.div`
   padding: 10px;
   justify-content: center;
   overflow-y: scroll;
+  overflow-x: hidden;
+
+  /* // TODO : Apply Responsiveness */
 `;

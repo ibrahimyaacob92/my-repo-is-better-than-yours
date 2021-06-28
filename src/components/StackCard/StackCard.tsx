@@ -4,7 +4,7 @@ import { useRepoContext } from "../../context/RepoContext";
 import { Button, SpacedBetweenDiv, Hr } from "../../styles/common";
 import { RepoData } from "../../types";
 
-import { dateDiff } from "../../utils";
+import { dateDiff, numberWithCommas } from "../../utils";
 import DateIcon from "../DateIcon/DateIcon";
 import PLIcons from "../PLIcons/PLIcons";
 import StatsIcon from "../StatsIcon/StatsIcon";
@@ -35,18 +35,18 @@ const StackCard = ({ repo, index }: Props) => {
     owner,
     name,
     forks,
-    lastMonthDonwloads,
+    lastMonthDownloads,
     createdAt,
     lastUpdate,
     avatar,
     url,
+    score,
   } = repo;
   const issuesClosed = totalIssues === 0 ? 0 : totalIssues - openIssues;
   const percentageOpened = Number(
     ((openIssues * 100) / totalIssues).toFixed(2)
   );
   const { dispatchRepo } = useRepoContext();
-  console.log(hover);
   return (
     <Card
       key={name + owner}
@@ -61,9 +61,9 @@ const StackCard = ({ repo, index }: Props) => {
       </CenterDivFlex>
       <SubtitleTypeA>by {owner}</SubtitleTypeA>
       <StatsIcon
-        number={lastMonthDonwloads}
+        number={lastMonthDownloads}
         icon="downloads"
-        iconColor={hover && "Forestgreen"}
+        iconColor={hover ? "Forestgreen" : "inherit"}
       />
       <CenterDivFlex>
         <DateIcon date={createdAt} icon="hourglass" highlight={hover} />
@@ -73,39 +73,39 @@ const StackCard = ({ repo, index }: Props) => {
         <StatsIcon
           number={issuesClosed}
           icon="issuesClosed"
-          iconColor={hover && "green"}
+          iconColor={hover ? "green" : "inherit"}
         />
         <StatsIcon
           number={openIssues}
           icon="openIssues"
-          iconColor={hover && "firebrick"}
+          iconColor={hover ? "firebrick" : "inherit"}
         />
         <StatsIcon
           number={percentageOpened}
           icon="percent"
           uom="%"
-          iconColor={hover && "cadetblue"}
+          iconColor={hover ? "cadetblue" : "inherit"}
         />
       </CenterDivFlex>
       <CenterDivFlex>
         <StatsIcon
           number={watch}
           icon="watch"
-          iconColor={hover && "Darkblue"}
+          iconColor={hover ? "Darkblue" : "inherit"}
         />
         <StatsIcon
           number={stars}
           icon="stars"
-          iconColor={hover && "goldenrod"}
+          iconColor={hover ? "goldenrod" : "inherit"}
         />
         <StatsIcon
           number={forks}
           icon="forks"
-          iconColor={hover && "MediumVioletRed"}
+          iconColor={hover ? "MediumVioletRed" : "inherit"}
         />
       </CenterDivFlex>
       <Hr />
-      <Title>100 pts</Title>
+      <Title>{numberWithCommas(score as number)}</Title>
       <PLIcons language={language} />
       <CloseButton
         appear={hover}

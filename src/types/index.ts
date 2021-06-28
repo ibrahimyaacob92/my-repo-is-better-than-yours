@@ -19,7 +19,8 @@ export type RepoData = {
   minimize: boolean;
   contributors?: number;
   avatar?: string;
-  lastMonthDonwloads?: number;
+  lastMonthDownloads?: number;
   latestVersion?: number;
   releaseHistories?: string[];
+  score?: number;
 };

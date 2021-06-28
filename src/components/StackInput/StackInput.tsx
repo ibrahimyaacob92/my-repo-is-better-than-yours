@@ -84,7 +84,7 @@ const StackInput = (props: Props) => {
         />
         <datalist id="packageSuggestion">
           {packageManagers.map((pkgName) => (
-            <option value={`${pkgName}/${repoName || ""}`} />
+            <option key={pkgName} value={`${pkgName}/${repoName || ""}`} />
           ))}
         </datalist>
       </div>
@@ -95,11 +95,11 @@ const StackInput = (props: Props) => {
       >
         Fetch Repo
       </Button>
-      <p>
+      <div>
         {Object.entries(errors).map(([errorKey, errorMsg], idx) => (
           <p key={idx}>{errorMsg}</p>
         ))}
-      </p>
+      </div>
     </Form>
   );
 };
