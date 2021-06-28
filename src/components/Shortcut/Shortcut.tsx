@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useFetchRepo, useLocalStorage } from "../../hooks";
 import popularRepos from "../../sample/popularRepos";
+import { RepoItem, ScrollableDiv } from "./styles";
+import { BsBookmark } from "react-icons/bs";
+import { RiVipDiamondLine } from "react-icons/ri";
+import Accordion from "../Accordion/Accordion";
 
 interface Props {}
 
@@ -9,20 +13,32 @@ const Shortcut = (props: Props) => {
   const [storedValue] = useLocalStorage("REPOS", []);
 
   return (
-    <>
-      <div>
-        <h3>Saved Searches</h3>
-        {storedValue.map((repo: any) => (
-          <ShortcutItem repo={repo} />
-        ))}
-      </div>
-      <div>
-        <h3>Popular Repos</h3>
-        {popularRepos.map((repo: any) => (
-          <ShortcutItem repo={repo} />
-        ))}
-      </div>
-    </>
+    <ScrollableDiv>
+      <Accordion title={"Saved Search"} defaultOpen={true}>
+        <>
+          {storedValue.map((repo: any) => (
+            <ShortcutItem repo={repo} />
+          ))}
+        </>
+      </Accordion>
+      <Accordion title="Popular Repos" defaultOpen={true}>
+        <>
+          {popularRepos.map((repo: any) => (
+            <ShortcutItem repo={repo} />
+          ))}
+        </>
+      </Accordion>
+      <Accordion title="About" defaultOpen={false}>
+        <>
+          <p>
+            This is an opensource project to compare github's repositories &
+            packages. Many improvements can be made & the scoring method may
+            need a second opinion.
+          </p>
+          <p>Created by Ibrahim Yaacob.</p>
+        </>
+      </Accordion>
+    </ScrollableDiv>
   );
 };
 
@@ -42,5 +58,9 @@ const ShortcutItem = (props: ShortcutItemProp) => {
     }
   }, [fetch]);
 
-  return <p onClick={() => setFetch(true)}> {`${repoOwner}/${repoName}`} </p>;
+  return (
+    <RepoItem onClick={() => setFetch(true)}>
+      {`# ${repoOwner}/${repoName}`}
+    </RepoItem>
+  );
 };

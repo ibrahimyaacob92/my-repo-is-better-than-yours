@@ -29,16 +29,26 @@ export const AbsoluteDiv = styled.div<AbsoluteDivType>`
 `;
 
 export const Button = styled.button`
-  border: 1px solid transparent;
-  background-color: transparent;
+  border: 1px solid gray;
+  background-color: rgba(0, 128, 0, 0.1);
   border-radius: 10px;
   padding: 5px 5px;
   transition: 0.5s;
   :hover {
     border: 1px rgba(0, 128, 0, 0.5) solid;
-    color: green;
-    background-color: rgba(0, 128, 0, 0.1);
+    background-color: forestgreen;
+    color: white;
     cursor: pointer;
+  }
+  :disabled {
+    background-color: transparent;
+    border: 1px solid gray;
+    color: gray;
+  }
+  :focus {
+    outline: none;
+    background-color: forestgreen;
+    color: white;
   }
 `;
 
@@ -49,4 +59,18 @@ export const Hr = styled.hr`
   border-left: none;
   border-right: none;
   margin: 4px;
+`;
+
+export const ClickableP = styled.p`
+  :hover {
+    color: purple;
+    cursor: pointer;
+  }
+`;
+
+export const ClickableH3 = styled.h3`
+  :hover {
+    color: purple;
+    cursor: pointer;
+  }
 `;

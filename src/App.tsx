@@ -2,6 +2,7 @@ import React from "react";
 import { StackInput, StackList, Shortcut, Navbar } from "./components";
 import { RepoProvider } from "./context/RepoContext";
 import styled from "styled-components";
+import { Hr } from "./styles/common";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
         <Navbar>
           <>
             <StackInput />
+            <Hr />
             <Shortcut />
           </>
         </Navbar>
@@ -25,7 +27,7 @@ const AppContainer = styled.div`
   display: grid;
   grid-template-columns: 280px auto;
   height: calc(100vh - 20px);
-  column-gap: 10px;
+  column-gap: 30px;
   padding: 10px;
   justify-content: center;
   overflow-y: scroll;

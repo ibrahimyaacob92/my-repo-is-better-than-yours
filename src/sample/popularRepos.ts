@@ -41,6 +41,30 @@ const popularRepo = [
     packageMgr: "npm",
     packageName: "vue",
   },
+  {
+    repoName: "core",
+    repoOwner: "adonisjs",
+    packageMgr: "npm",
+    packageName: "adonis",
+  },
+  {
+    repoName: "express",
+    repoOwner: "expressjs",
+    packageMgr: "npm",
+    packageName: "express",
+  },
+  {
+    repoName: "spring-boot",
+    repoOwner: "spring-projects",
+    packageMgr: "npm",
+    packageName: "spring-boot",
+  },
+  {
+    repoName: "flask",
+    repoOwner: "pallets",
+    packageMgr: "pypi",
+    packageName: "flask",
+  },
 ];
 
 export default popularRepo;

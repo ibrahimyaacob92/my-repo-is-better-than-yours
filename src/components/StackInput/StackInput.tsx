@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import useFetchRepo, { PackageManager } from "../../hooks/useFetchRepo";
+import { Button } from "../../styles/common";
+import { Form } from "./styles";
 
 const DELIM = "/";
 const packageManagers = ["npm", "pypi"];
@@ -63,7 +65,7 @@ const StackInput = (props: Props) => {
   // TODO: Add autosuggest to the field
   // TODO: Implement Error Color Stuff
   return (
-    <form>
+    <Form>
       <div>
         <label>Repo Owner & Name</label>
         <input
@@ -86,19 +88,19 @@ const StackInput = (props: Props) => {
           ))}
         </datalist>
       </div>
-      <button
+      <Button
         type="submit"
         disabled={!buttonEnable}
         onClick={(e) => handleOnClick(e)}
       >
-        Open
-      </button>
+        Fetch Repo
+      </Button>
       <p>
         {Object.entries(errors).map(([errorKey, errorMsg], idx) => (
           <p key={idx}>{errorMsg}</p>
         ))}
       </p>
-    </form>
+    </Form>
   );
 };
 
