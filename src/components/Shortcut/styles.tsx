@@ -11,6 +11,7 @@ export const ScrollableDiv = styled.div`
 export const RepoItem = styled(ClickableP)`
   transition: 0.5s;
   padding: 2px 0;
+  font-size: 14px;
   width: max-content;
   :hover {
     transform: translate(10px);

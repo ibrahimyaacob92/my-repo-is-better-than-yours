@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useFetchRepo, useLocalStorage } from "../../hooks";
 import popularRepos from "../../sample/popularRepos";
 import { RepoItem, ScrollableDiv } from "./styles";
-import { BsBookmark } from "react-icons/bs";
+import { BsBookmark, BsInfoCircle } from "react-icons/bs";
 import { RiVipDiamondLine } from "react-icons/ri";
 import Accordion from "../Accordion/Accordion";
 
@@ -14,28 +14,35 @@ const Shortcut = (props: Props) => {
 
   return (
     <ScrollableDiv>
-      <Accordion title={"Saved Search"} defaultOpen={true}>
+      <Accordion title={"Saved Search"} defaultOpen={true} Icon={BsBookmark}>
         <>
           {storedValue.map((repo: any) => (
             <ShortcutItem key={repo.repoName + repo.repoOwner} repo={repo} />
           ))}
         </>
       </Accordion>
-      <Accordion title="Popular Repos" defaultOpen={true}>
+      <Accordion
+        title="Popular Repos"
+        defaultOpen={true}
+        Icon={RiVipDiamondLine}
+      >
         <>
           {popularRepos.map((repo: any) => (
             <ShortcutItem key={repo.repoName + repo.repoOwner} repo={repo} />
           ))}
         </>
       </Accordion>
-      <Accordion title="About" defaultOpen={false}>
+      <Accordion title="About" defaultOpen={false} Icon={BsInfoCircle}>
         <>
           <p>
-            Opensource project to compare github's repositories & packages. Many
-            improvements can be made & the scoring method may need a second
+            Open source project to compare github's repositories & packages.
+            Many improvements can be made & the scoring method may need a second
             opinion.
           </p>
-          <p>Created by Ibrahim Yaacob.</p>
+          <p>
+            Created by
+            <a href="https://github.com/ibrahimyaacob92"> Ibrahim Yaacob</a>
+          </p>
         </>
       </Accordion>
     </ScrollableDiv>

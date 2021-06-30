@@ -19,14 +19,23 @@ export function yearMonthDiff(
 export function dateDiff(
   startingDate: string,
   endingDate: string = ""
-): { dayDiff: number; monthDiff: number; yearDiff: number; totalDays: number } {
+): {
+  dayDiff: number;
+  monthDiff: number;
+  yearDiff: number;
+  totalDays: number;
+  isOlder: boolean;
+} {
   // console.log(startingDate);
   var startDate = new Date(new Date(startingDate).toISOString().substr(0, 10));
+  let isOlder = true;
   if (!endingDate) {
     endingDate = new Date().toISOString().substr(0, 10); // need date in YYYY-MM-DD format
   }
   var endDate = new Date(endingDate);
+  console.log(startDate > endDate);
   if (startDate > endDate) {
+    isOlder = false;
     var swap = startDate;
     startDate = endDate;
     endDate = swap;
@@ -60,6 +69,7 @@ export function dateDiff(
     monthDiff,
     dayDiff,
     totalDays,
+    isOlder,
   };
 }
 

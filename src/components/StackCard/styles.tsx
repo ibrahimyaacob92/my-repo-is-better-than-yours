@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { CenterDiv } from "../../styles/common";
 import { AiOutlinePushpin } from "react-icons/ai";
+import { ImStatsBars2 } from "react-icons/im";
 
 export const Card = styled.div`
   position: relative;
@@ -68,6 +69,19 @@ export const PinButton = styled(AiOutlinePushpin)<Appear>`
   :hover {
     cursor: pointer;
     color: blue;
+    opacity: 100%;
+  }
+`;
+
+export const CompareToggle = styled(ImStatsBars2)<Appear>`
+  position: absolute;
+  right: 8px;
+  top: 33px;
+  transition: 0.5s;
+  color: ${(props) => (props.appear ? "gray" : "transparent")};
+  :hover {
+    cursor: pointer;
+    color: forestgreen;
     opacity: 100%;
   }
 `;

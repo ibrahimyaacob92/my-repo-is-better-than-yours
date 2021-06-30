@@ -7,17 +7,28 @@ interface Props {
   children: JSX.Element | string;
   title: string;
   defaultOpen: boolean;
+  Icon?: React.ElementType;
 }
 
-const Accordion = ({ title, children, defaultOpen }: Props) => {
+const Accordion = ({ title, children, defaultOpen, Icon }: Props) => {
   const [open, setOpen] = useState(defaultOpen);
   return (
     <div>
       <AccordionTitle onClick={() => setOpen(!open)}>
-        <ClickableH3>{title}</ClickableH3>
+        <ClickableH3>
+          {Icon && <Icon />}
+          <span>{title}</span>
+        </ClickableH3>
+
         {open ? <BsChevronUp /> : <BsChevronDown />}
       </AccordionTitle>
-      {open && <div style={{ paddingTop: "5px" }}>{children}</div>}
+      {open && (
+        <div
+          style={{ paddingTop: "5px", paddingLeft: "28px", fontSize: "14px" }}
+        >
+          {children}
+        </div>
+      )}
     </div>
   );
 };

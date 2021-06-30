@@ -10,8 +10,13 @@ const StackList = (props: Props) => {
   // console.log(repoData);
   return (
     <CardList>
-      {repoData.map((repo, index) => (
-        <StackCard repo={repo} index={index} key={repo.name + repo.owner} />
+      {repoData.map((repo, index, repos) => (
+        <StackCard
+          repo={repo}
+          index={index}
+          key={repo.name + repo.owner}
+          benchmark={repos[0]}
+        />
       ))}
     </CardList>
   );

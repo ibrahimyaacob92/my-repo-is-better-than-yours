@@ -6,7 +6,7 @@ import {
   AiOutlinePieChart,
 } from "react-icons/ai";
 import { VscIssues, VscIssueClosed } from "react-icons/vsc";
-import { CenterDiv } from "../../styles/common";
+import { CenterDiv, SpanPlusMinus } from "../../styles/common";
 
 interface Props {
   number: number | undefined;
@@ -21,9 +21,19 @@ interface Props {
   additionalText?: string;
   uom?: string;
   iconColor?: string;
+  oppositeRule?: boolean;
+  neutral: boolean;
 }
 
-const StatsIcon = ({ number, icon, additionalText, uom, iconColor }: Props) => {
+const StatsIcon = ({
+  number,
+  icon,
+  additionalText,
+  uom,
+  iconColor,
+  neutral,
+  oppositeRule = false,
+}: Props) => {
   const Icon = {
     watch: AiOutlineEye,
     stars: AiOutlineStar,
@@ -37,10 +47,24 @@ const StatsIcon = ({ number, icon, additionalText, uom, iconColor }: Props) => {
   return (
     <CenterDiv>
       <Icon color={iconColor as string} style={{ transition: "0.5s" }} />
-      <span>
+      <SpanPlusMinus
+        colorOption={
+          neutral
+            ? "neutral"
+            : number && isFinite(number)
+            ? number > 0
+              ? oppositeRule
+                ? "minus"
+                : "plus"
+              : oppositeRule
+              ? "plus"
+              : "minus"
+            : "neutral"
+        }
+      >
         {number && isFinite(number) ? number : "??"}
         {uom}
-      </span>
+      </SpanPlusMinus>
       <span>{additionalText}</span>
     </CenterDiv>
   );

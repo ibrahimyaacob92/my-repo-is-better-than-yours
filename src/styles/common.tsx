@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 export const CenterDiv = styled.div`
   display: flex;
@@ -69,8 +69,29 @@ export const ClickableP = styled.p`
 `;
 
 export const ClickableH3 = styled.h3`
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
   :hover {
     color: purple;
     cursor: pointer;
   }
+`;
+
+const AppearAnimation = keyframes`
+  0% {bottom:15px}
+  100%{bottom:0px}
+`;
+
+export const SpanPlusMinus = styled.span<{
+  colorOption: "plus" | "minus" | "neutral";
+}>`
+  color: ${(props) =>
+    ({ plus: "forestgreen", minus: "crimson", neutral: "black" }[
+      props.colorOption
+    ])};
+  animation-name: ${AppearAnimation};
+  animation-duration: 0.2s;
+  position: relative;
 `;
