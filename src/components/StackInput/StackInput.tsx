@@ -64,6 +64,7 @@ const StackInput = (props: Props) => {
 
   // TODO: Add autosuggest to the field
   // TODO: Implement Error Color Stuff
+  // TODO: Save to LocalStorage
   return (
     <Form>
       <div>
@@ -95,6 +96,7 @@ const StackInput = (props: Props) => {
       >
         Fetch Repo
       </Button>
+      {/* //TODO: handle error */}
       <div>
         {Object.entries(errors).map(([errorKey, errorMsg], idx) => (
           <p key={idx}>{errorMsg}</p>

@@ -25,7 +25,7 @@ export default App;
 
 const AppContainer = styled.div`
   display: grid;
-  grid-template-columns: 280px auto;
+  grid-template-columns: 260px auto;
   height: calc(100vh - 20px);
   column-gap: 30px;
   padding: 10px;

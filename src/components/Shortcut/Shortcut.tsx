@@ -8,7 +8,6 @@ import Accordion from "../Accordion/Accordion";
 
 interface Props {}
 
-// TODOS: Need to fetch useFetch Repo
 const Shortcut = (props: Props) => {
   const [storedValue] = useLocalStorage("REPOS", []);
 
