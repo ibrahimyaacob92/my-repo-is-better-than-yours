@@ -15,6 +15,13 @@ type FetchError = {
 };
 export type PackageManager = "npm" | "pypi" | "rubyGems" | "composer";
 
+const initialStateError = {
+  first: null,
+  second: null,
+  third: null,
+  fourth: null,
+};
+
 /** This hook fetch data from API, restructure it and & push it to global context */
 const useFetchRepo = (
   repoOwner: string,
@@ -24,12 +31,7 @@ const useFetchRepo = (
   fetchNow: boolean
 ) => {
   const [repoData, setRepoData] = useState<RepoData | null>(null);
-  const [errors, setErrors] = useState<FetchError>({
-    first: null,
-    second: null,
-    third: null,
-    fourth: null,
-  });
+  const [errors, setErrors] = useState<FetchError>(initialStateError);
   const [isLoading, setIsLoading] = useState(true);
   const { dispatchRepo, repoData: repoList } = useRepoContext();
 
@@ -156,13 +158,12 @@ const useFetchRepo = (
   }, [fetchNow]);
 
   useEffect(() => {
+    console.log(repoData, errors.first);
     if (repoData && errors.first === null) {
-      console.log(repoData, errors.first);
       dispatchRepo({ type: "ADD", data: repoData });
+      setErrors(initialStateError);
     }
-    // console.log("triggered");
   }, [repoData]);
-
   return { repoData, errors, isLoading };
 };
 

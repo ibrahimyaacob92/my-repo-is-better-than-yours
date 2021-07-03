@@ -28,6 +28,7 @@ export const useRepoContext = () => {
 
 const reducer = (state: RepoData[], action: { type: string; data: any }) => {
   const { type, data } = action;
+  console.log(state);
   switch (type) {
     case "ADD": {
       if (!state.some((repo) => repo.url === data.url)) {

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useRepoLocalStorage } from "../../hooks";
 import useFetchRepo, { PackageManager } from "../../hooks/useFetchRepo";
 import { Button } from "../../styles/common";
 import { Form } from "./styles";
@@ -9,13 +10,14 @@ const packageManagers = ["npm", "pypi"];
 interface Props {}
 
 const StackInput = (props: Props) => {
+  const { appendRepoLocalStorage } = useRepoLocalStorage();
   const [repo, setRepo] = useState("");
   const [packageMgr, setPackageMgr] = useState("");
   const [repoErr, setRepoErr] = useState(false);
   const [packageMgrErr, setPackageMgrErr] = useState(false);
   const [fetch, setFetch] = useState(false);
 
-  // TODO : concatenate the
+  // TODO : concatenate the index 1 to next indexes
   const buttonEnable: boolean =
     packageMgrErr && repoErr && !!(packageMgr && repo);
   const [repoOwner, repoName] = repo.split(DELIM);
@@ -37,6 +39,14 @@ const StackInput = (props: Props) => {
     if (!errors.first) {
       setRepo("");
       setPackageMgr("");
+      if (repoOwner && repoName) {
+        appendRepoLocalStorage({
+          repoOwner,
+          repoName,
+          packageName,
+          packageManager,
+        });
+      }
     }
   }, [errors]);
 
@@ -65,6 +75,7 @@ const StackInput = (props: Props) => {
   // TODO: Add autosuggest to the field
   // TODO: Implement Error Color Stuff
   // TODO: Save to LocalStorage
+
   return (
     <Form>
       <div>

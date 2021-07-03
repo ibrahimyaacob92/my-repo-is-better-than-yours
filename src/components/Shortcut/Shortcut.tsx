@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useFetchRepo, useLocalStorage } from "../../hooks";
+import {
+  useFetchRepo,
+  useLocalStorage,
+  useRepoLocalStorage,
+} from "../../hooks";
 import popularRepos from "../../sample/popularRepos";
 import { RepoItem, ScrollableDiv } from "./styles";
 import { BsBookmark, BsInfoCircle } from "react-icons/bs";
@@ -9,13 +13,14 @@ import Accordion from "../Accordion/Accordion";
 interface Props {}
 
 const Shortcut = (props: Props) => {
-  const [storedValue] = useLocalStorage("REPOS", []);
+  // const [storedValue] = useLocalStorage("REPOS", []);
+  const { repoLocalStorage } = useRepoLocalStorage();
 
   return (
     <ScrollableDiv>
       <Accordion title={"Saved Search"} defaultOpen={true} Icon={BsBookmark}>
         <>
-          {storedValue.map((repo: any) => (
+          {repoLocalStorage.map((repo: any) => (
             <ShortcutItem key={repo.repoName + repo.repoOwner} repo={repo} />
           ))}
         </>
