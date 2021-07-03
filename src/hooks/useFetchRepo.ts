@@ -11,6 +11,7 @@ type FetchError = {
   first: string | null;
   second: string | null;
   third: string | null;
+  fourth: string | null;
 };
 export type PackageManager = "npm" | "pypi" | "rubyGems" | "composer";
 
@@ -27,6 +28,7 @@ const useFetchRepo = (
     first: null,
     second: null,
     third: null,
+    fourth: null,
   });
   const [isLoading, setIsLoading] = useState(true);
   const { dispatchRepo, repoData: repoList } = useRepoContext();
@@ -56,6 +58,7 @@ const useFetchRepo = (
       };
       _repoData = { ...toAppend };
     } catch (error) {
+      console.log("error at fetching github api");
       _errors.first = `Fetching Github API Error: ${error.message}`;
     }
 
@@ -133,10 +136,13 @@ const useFetchRepo = (
         });
       }
     } catch (error) {
+      const errorText = error.message;
+      _errors.fourth = errorText;
       console.log("Error Calculating");
     }
 
     // set the values after collected
+    console.log("setting Repo Data");
     setRepoData(_repoData as RepoData);
     setErrors({ ..._errors });
   };
@@ -150,7 +156,10 @@ const useFetchRepo = (
   }, [fetchNow]);
 
   useEffect(() => {
-    if (repoData) dispatchRepo({ type: "ADD", data: repoData });
+    if (repoData && errors.first === null) {
+      console.log(repoData, errors.first);
+      dispatchRepo({ type: "ADD", data: repoData });
+    }
     // console.log("triggered");
   }, [repoData]);
 

@@ -7,21 +7,25 @@ export const CardList = styled.div`
   padding-bottom: 10px;
   /* //TODO: Make this responsive ! */
   grid-template-columns: 1fr;
+  min-width: 274px;
 
   @media (min-width: 900px) {
     grid-template-columns: 1fr 1fr;
+    min-width: 555px;
   }
 
-  @media (min-width: 1280px) {
+  @media (min-width: 1200px) {
     grid-template-columns: 1fr 1fr 1fr;
-    /* max-width: 1080px; */
+    min-width: 837px;
   }
 
   @media (min-width: 1500px) {
     grid-template-columns: 1fr 1fr 1fr 1fr;
+    min-width: 1140px;
   }
 
   @media (min-width: 1700px) {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    min-width: 1400;
   }
 `;
