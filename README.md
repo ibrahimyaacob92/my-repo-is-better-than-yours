@@ -2,7 +2,7 @@
 
 This is a open source project to compare Github's repositories & packages (originated from NPM, Pypi, others..). Many improvements can be made & the scoring method could use a second opinion. Reach out to myself if you're interested to collaborate.
 
-<!-- ![alt text](https:) -->
+![alt text](https://raw.githubusercontent.com/ibrahimyaacob92/my-repo-is-better-than-yours/master/sample.png)
 
 ## Features
 
