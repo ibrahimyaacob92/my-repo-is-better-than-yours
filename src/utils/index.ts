@@ -33,7 +33,6 @@ export function dateDiff(
     endingDate = new Date().toISOString().substr(0, 10); // need date in YYYY-MM-DD format
   }
   var endDate = new Date(endingDate);
-  console.log(startDate > endDate);
   if (startDate > endDate) {
     isOlder = false;
     var swap = startDate;

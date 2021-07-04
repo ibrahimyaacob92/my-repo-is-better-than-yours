@@ -22,7 +22,7 @@ const StackInput = (props: Props) => {
     packageMgrErr && repoErr && !!(packageMgr && repo);
   const [repoOwner, repoName] = repo.split(DELIM);
   const [packageManager, packageName] = packageMgr.split(DELIM);
-  const { errors } = useFetchRepo(
+  const { errors, isLoading } = useFetchRepo(
     repoOwner,
     repoName,
     packageManager as PackageManager,
@@ -36,9 +36,7 @@ const StackInput = (props: Props) => {
   };
 
   useEffect(() => {
-    if (!errors.first) {
-      setRepo("");
-      setPackageMgr("");
+    if (errors.first === null && isLoading === false) {
       if (repoOwner && repoName) {
         appendRepoLocalStorage({
           repoOwner,
@@ -47,8 +45,11 @@ const StackInput = (props: Props) => {
           packageManager,
         });
       }
+      setRepo("");
+      setPackageMgr("");
     }
-  }, [errors]);
+    // console.log("ASdasd", errors.first, isLoading);
+  }, [errors, isLoading]);
 
   useEffect(() => {
     if (fetch) {
@@ -110,7 +111,9 @@ const StackInput = (props: Props) => {
       {/* //TODO: handle error */}
       <div>
         {Object.entries(errors).map(([errorKey, errorMsg], idx) => (
-          <p key={idx}>{errorMsg}</p>
+          <p style={{ fontSize: "14px" }} key={idx}>
+            {errorMsg}
+          </p>
         ))}
       </div>
     </Form>

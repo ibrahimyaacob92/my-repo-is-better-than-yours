@@ -42,7 +42,6 @@ const useFetchRepo = (
       // First request to get the main
       console.log("#1 Requesting to Github API..");
       const { data } = await axios.get(gitRepoURL(repoOwner, repoName));
-      console.log(data);
       const toAppend = {
         name: data.name,
         owner: data.owner.login,
@@ -145,7 +144,7 @@ const useFetchRepo = (
 
     // set the values after collected
     console.log("setting Repo Data");
-    setRepoData(_repoData as RepoData);
+    if (_repoData?.name) setRepoData(_repoData as RepoData);
     setErrors({ ..._errors });
   };
 
@@ -153,15 +152,17 @@ const useFetchRepo = (
   useEffect(() => {
     if (fetchNow) {
       console.log("triggering fetch git repo function");
+      setIsLoading(true);
       fetchGitRepo();
     }
   }, [fetchNow]);
 
   useEffect(() => {
-    console.log(repoData, errors.first);
+    // console.log(repoData, errors);
     if (repoData && errors.first === null) {
       dispatchRepo({ type: "ADD", data: repoData });
       setErrors(initialStateError);
+      setIsLoading(false);
     }
   }, [repoData]);
   return { repoData, errors, isLoading };

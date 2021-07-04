@@ -17,3 +17,17 @@ export const RepoItem = styled(ClickableP)`
     transform: translate(10px);
   }
 `;
+
+export const ContactsIcon = styled.div`
+  display: flex;
+  font-size: 26px;
+  column-gap: 4px;
+  color: rgba(0, 0, 0, 0.7);
+  justify-content: center;
+  svg {
+    :hover {
+      cursor: pointer;
+      color: black;
+    }
+  }
+`;
