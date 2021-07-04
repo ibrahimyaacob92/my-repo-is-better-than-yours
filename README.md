@@ -1,46 +1,45 @@
-# Getting Started with Create React App
+# Introduction
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a open source project to compare Github's repositories & packages (originated from NPM, Pypi, others..). Many improvements can be made & the scoring method could use a second opinion. Reach out to myself if you're interested to collaborate.
 
-## Available Scripts
+<!-- ![alt text](https:) -->
 
-In the project directory, you can run:
+## Features
 
-### `yarn start`
+1. Compare Repo at ease
+2. Calculate difference in number of each repos
+3. Save your searches to the local storage
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Room for Improvement
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+1. Getting total package download from python, laravel, java and other programming language package managers. At the moment, it is not yet explored.
+2. Total version releases for the repo/package.
+3. Scoring method is very linear, check out the code
+4. Testing
 
-### `yarn test`
+## Contributing
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Issues
 
-### `yarn build`
+Reporting an issue & suggestions would be the best thing you can do !
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Development
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+If you have following skill even the most basic, feel free to reach out and we can discuss any collaboration opportunities:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- React TypeScript
+- Experience in APIs
+- Know how to rate & weight Repositories & Packages
+- UI/UX (SPA, animations and other stuff)
+- Testing Framework
 
-### `yarn eject`
+### Coffee
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+If you're happy with what you see, consider buying me a
+[coffee](https://www.buymeacoffee.com/myrepoisbetter)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## License
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+My Repo Is Better Than Yours is open source, licensed under
+[MIT](https://choosealicense.com/licenses/mit/)
+license

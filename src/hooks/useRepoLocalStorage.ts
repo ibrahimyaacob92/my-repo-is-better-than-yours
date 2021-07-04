@@ -1,5 +1,7 @@
 import useLocalStorage from "./useLocalStorage";
 
+// TODO : Link to Global Context
+// TODO : Delete & Clear functionality
 const useRepoLocalStorage = () => {
   const [repoLocalStorage, setLocalStorage] = useLocalStorage("REPO", []);
 
